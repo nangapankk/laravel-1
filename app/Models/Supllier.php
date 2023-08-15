@@ -13,4 +13,14 @@ class Supllier extends Model
     protected $fillable = [
         'name', 'email', 'phone', 'address'
     ];
+
+
+    /**
+     * model supllier memiliki banyak product
+     *
+     * @return void
+     */
+    public function products(){
+        return $this->hasMany(Product::class, 'supllier_id', 'id');
+    }
 }
