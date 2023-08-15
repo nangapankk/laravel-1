@@ -15,11 +15,14 @@ class CreateTableProduct extends Migration
     {
         Schema::create('product', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->text('description');
             $table->string('category');
-            $table->decimal('price', 12,2);
+            $table->decimal('buy', 12, 2)->default(0);
+            $table->decimal('sell', 12, 2)->default(0);
+            $table->unsignedInteger('stock')->default(0);
             $table->unsignedBigInteger('supllier_id');
+            $table->string('image_url');
             $table->timestamps();
 
             $table->foreign('supllier_id')->references('id')
